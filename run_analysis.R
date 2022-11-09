@@ -4,13 +4,13 @@ X_test <- read.table("./UCI HAR Dataset/test/X_test.txt")
 y_test <- read.table("./UCI HAR Dataset/test/y_test.txt")
 
 
-test<-data.frame(cbind(subject_test,X_test,y_test))
+test<-data.frame(cbind(subject_test,y_test,X_test))
 
 subject_train <- read.table("./UCI HAR Dataset/train/subject_train.txt")
 X_train <- read.table("./UCI HAR Dataset/train/X_train.txt")
 y_train <- read.table("./UCI HAR Dataset/train/y_train.txt")
 
-train<-data.frame(cbind(subject_train,X_train,y_train))
+train<-data.frame(cbind(subject_train,y_train,X_train))
 
 all<-rbind(test,train)
 

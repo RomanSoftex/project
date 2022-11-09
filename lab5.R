@@ -1,0 +1,34 @@
+con <-file("./exdata_data_household_power_consumption/household_power_consumption.txt")
+B<-readLines(con,n=1)
+B1<-strsplit(B,";")
+A<-grep('^[1-2]/2/2007',readLines(con),value=TRUE)
+tf<-tempfile()
+writeLines(A,tf)
+df<-read.csv(tf,sep=";",head=FALSE,dec=".",stringsAsFactors=FALSE)
+unlink(tf)
+
+# print the names attribute of the B1 data set
+names(B1)
+
+names(df)[1:9]<-c("Date","Time","Global_active_power",
+                  "Global_reactive_power","Voltage","Global_intensity",
+                  "Sub_metering_1","Sub_metering_2","Sub_metering_3")
+
+png(filename ="plot_.png",width = 480, height = 480, units = "px")
+dev.off()
+
+aa1<-df[,1]
+bb1<-df[,2]
+df$datatime<-strptime(paste(aa1,bb1,sep=" "),format="%d/%m/%Y %H:%M:%S")
+
+library(datasets)
+data(df)
+
+with(df, plot(Date, Global_active_power))
+
+
+library(datasets)
+with(df, plot(Date, Global_reactive_power)) ## Create plot on screen device
+title(main = "Old Faithful Geyser data") ## Add a main title
+dev.copy(png, file = "geyserplot.png") ## Copy my plot to a PNG file
+dev.off() ## Don't forget to close the PNG device!
