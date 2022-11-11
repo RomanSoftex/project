@@ -24,11 +24,16 @@ df$datatime<-strptime(paste(aa1,bb1,sep=" "),format="%d/%m/%Y %H:%M:%S")
 library(datasets)
 data(df)
 
-with(df, plot(Date, Global_active_power))
+with(df, plot(datatime, Global_active_power))
+
+ggplot(data=df, aes(x=datatime, y=Global_active_power))
+ggsave("plot1.png", width=480, height=480, units="px")
+
+with(df, plot(Global_active_power, datatime))
+png(filename ="plot_2.png",width = 480, height = 480, units = "px")
+dev.off()
+
+ggplot(data=df, aes(x=datatime, y=Global_active_power)) 
 
 
-library(datasets)
-with(df, plot(Date, Global_reactive_power)) ## Create plot on screen device
-title(main = "Old Faithful Geyser data") ## Add a main title
-dev.copy(png, file = "geyserplot.png") ## Copy my plot to a PNG file
-dev.off() ## Don't forget to close the PNG device!
+

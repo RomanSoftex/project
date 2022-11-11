@@ -1,0 +1,11 @@
+name: my_app
+title:
+username:
+account: softex-if
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 7597493
+bundleId: 6502568
+url: https://softex-if.shinyapps.io/my_app/
+when: 1668171501.75824
+lastSyncTime: 1668171501.75824
